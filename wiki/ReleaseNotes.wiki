@@ -1,0 +1,20 @@
+#summary Changelog for each version of Countdown Alarm++
+#labels Featured
+
+= Release Notes =
+  * *v1.0.7* (date here)
+    * notes here
+  * *v1.0.6* (date here)
+    * notes here
+  * *v1.0.5* (date here)
+    * notes here
+  * *v1.0.4* (date here)
+    * notes here
+  * *v1.0.3* (date here)
+    * notes here
+  * *v1.0.2* (date here)
+    * notes here
+  * *v1.0.1* (date here)
+    * notes here
+  * *v1.0.0* (date here)
+    * notes here
