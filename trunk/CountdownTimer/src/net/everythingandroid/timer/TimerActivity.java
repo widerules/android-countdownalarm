@@ -2,6 +2,7 @@ package net.everythingandroid.timer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -171,8 +172,14 @@ public class TimerActivity extends Activity {
 						Toast.LENGTH_LONG).show();
 			}
 		}
-
+		
 		keyboard_hidden = getResources().getConfiguration().keyboardHidden;
+
+		if (getResources().getConfiguration().orientation
+				== Configuration.ORIENTATION_LANDSCAPE) {
+			LinearLayout LL = (LinearLayout)findViewById(R.id.ButtonLayout);
+			LL.setOrientation(LinearLayout.HORIZONTAL);			
+		}
 
 		if (keyboard_hidden == Configuration.KEYBOARDHIDDEN_NO) {
 			hourEditText.setVisibility(EditText.VISIBLE);
@@ -182,9 +189,6 @@ public class TimerActivity extends Activity {
 			hourSpinner.setVisibility(View.GONE);
 			minSpinner.setVisibility(View.GONE);
 			secSpinner.setVisibility(View.GONE);
-
-			LinearLayout LL = (LinearLayout)findViewById(R.id.ButtonLayout);
-			LL.setOrientation(LinearLayout.HORIZONTAL);
 		}		
 	}
 
@@ -205,11 +209,11 @@ public class TimerActivity extends Activity {
 			settings.putString("prevSecSelected",  (String)secSpinner.getSelectedItem());
 		} else {
 			settings.putString("prevSecSelected", 
-					String.valueOf(Integer.parseInt(secEditText.getText().toString())));
+					String.valueOf(getEditTextValue(secEditText)));
 			settings.putString("prevMinSelected", 
-					String.valueOf(Integer.parseInt(minEditText.getText().toString())));
+					String.valueOf(getEditTextValue(minEditText)));
 			settings.putString("prevHourSelected", 
-					String.valueOf(Integer.parseInt(hourEditText.getText().toString())));
+					String.valueOf(getEditTextValue(hourEditText)));
 		}
 		settings.commit();
 
@@ -291,13 +295,13 @@ public class TimerActivity extends Activity {
 			
 			//Keyboard is available, use edittext boxes
 			if (keyboard_hidden == Configuration.KEYBOARDHIDDEN_NO) {
-				hourSelected = Integer.parseInt(hourEditText.getText().toString());
-				minSelected  = Integer.parseInt(minEditText.getText().toString());
-				secSelected  = Integer.parseInt(secEditText.getText().toString());
+				hourSelected = getEditTextValue(hourEditText);
+				minSelected  = getEditTextValue(minEditText);
+				secSelected  = getEditTextValue(secEditText);
 			} else { //Keyboard not available, use spinners
-				hourSelected = Integer.parseInt((String) hourSpinner.getSelectedItem());
-				minSelected =  Integer.parseInt((String) minSpinner.getSelectedItem());
-				secSelected =  Integer.parseInt((String) secSpinner.getSelectedItem());
+				hourSelected = getSpinnerValue(hourSpinner);
+				minSelected =  getSpinnerValue(minSpinner);
+				secSelected =  getSpinnerValue(secSpinner);
 			}
 			
 			myTimer.startStop(hourSelected, minSelected, secSelected);			
@@ -503,4 +507,21 @@ public class TimerActivity extends Activity {
 		minTextView.setText( "" + (mins  < 10 ? "0" : "") + mins);
 		secTextView.setText( "" + (secs  < 10 ? "0" : "") + secs);
 	}
+	
+	private int getEditTextValue(EditText et) {
+		try {
+			return Integer.parseInt(et.getText().toString());
+		} catch (NumberFormatException e) {
+			return 0;
+		}		
+	}
+	
+	private int getSpinnerValue(Spinner spinner) {
+		try {
+			return Integer.parseInt((String) spinner.getSelectedItem());
+		} catch (NumberFormatException e) {
+			return 0;
+		}		
+	}
+	
 }

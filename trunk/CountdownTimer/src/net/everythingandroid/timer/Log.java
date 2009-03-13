@@ -1,6 +1,5 @@
 package net.everythingandroid.timer;
 
-import android.util.Config;
 
 public class Log {
     public final static String LOGTAG = "Countdown Alarm++";
