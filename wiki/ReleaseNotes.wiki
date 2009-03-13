@@ -10,13 +10,13 @@
   * *v1.0.6* (December 14th, 2008)
     * bug fixes
   * *v1.0.5* (December 11th, 2008)
-    * notes here
+    * restructured code
   * *v1.0.4* (November 10th, 2008)
-    * notes here
+    * added additional notification options
   * *v1.0.3* (November 6th, 2008)
     * bug fixes
   * *v1.0.2* (November 6th, 2008)
-    * notes here
+    * added notification options
   * *v1.0.1* (October 31st, 2008)
     * bug fixes
   * *v1.0.0* (October 31st, 2008)
