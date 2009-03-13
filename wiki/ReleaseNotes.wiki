@@ -2,19 +2,22 @@
 #labels Featured
 
 = Release Notes =
-  * *v1.0.7* (date here)
+  * *v1.0.8* (March 13th, 2009)
+    * fixed crash if edittext is empty
+    * fixed layout if soft keyboard is available
+  * *v1.0.7* (January 12th, 2009)
     * notes here
-  * *v1.0.6* (date here)
+  * *v1.0.6* (December 14th, 2008)
+    * bug fixes
+  * *v1.0.5* (December 11th, 2008)
     * notes here
-  * *v1.0.5* (date here)
+  * *v1.0.4* (November 10th, 2008)
     * notes here
-  * *v1.0.4* (date here)
+  * *v1.0.3* (November 6th, 2008)
+    * bug fixes
+  * *v1.0.2* (November 6th, 2008)
     * notes here
-  * *v1.0.3* (date here)
-    * notes here
-  * *v1.0.2* (date here)
-    * notes here
-  * *v1.0.1* (date here)
-    * notes here
-  * *v1.0.0* (date here)
-    * notes here
+  * *v1.0.1* (October 31st, 2008)
+    * bug fixes
+  * *v1.0.0* (October 31st, 2008)
+    * Initial release
