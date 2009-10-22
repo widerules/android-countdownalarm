@@ -59,19 +59,19 @@ public class ManageNotification {
 
   public static void clear() {
     if (myNM != null) {
-      Log.v("Notification cleared");
+      if (Log.DEBUG) Log.v("Notification cleared");
       myNM.cancel(NOTIFICATION_ALERT);
     }
   }
 
   public static void clear(Context context) {
-    Log.v("Notification cleared");
+    if (Log.DEBUG) Log.v("Notification cleared");
     createNM(context);
     myNM.cancel(NOTIFICATION_ALERT);
   }
 
   public static void clearAll(Context context) {
-    Log.v("All notifications cleared");
+    if (Log.DEBUG) Log.v("All notifications cleared");
     createNM(context);
     myNM.cancelAll();
   }

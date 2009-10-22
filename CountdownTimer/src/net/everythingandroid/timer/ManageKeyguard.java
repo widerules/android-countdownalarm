@@ -13,7 +13,7 @@ public class ManageKeyguard {
     if (myKM.inKeyguardRestrictedInputMode()) {
       myKL = myKM.newKeyguardLock(Log.LOGTAG);
       myKL.disableKeyguard();
-      Log.v("Keyguard disabled");
+      if (Log.DEBUG) Log.v("Keyguard disabled");
     }
   }
 
@@ -21,7 +21,7 @@ public class ManageKeyguard {
     if (myKL != null) {
       myKL.reenableKeyguard();
       myKL = null;
-      Log.v("Keyguard reenabled");
+      if (Log.DEBUG) Log.v("Keyguard reenabled");
     }
   }
 }

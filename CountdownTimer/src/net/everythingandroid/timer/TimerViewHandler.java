@@ -30,12 +30,12 @@ public abstract class TimerViewHandler extends Handler {
   }
 
   public void start() {
-    Log.v("TimerViewHandler: start()");
+    if (Log.DEBUG) Log.v("TimerViewHandler: start()");
     this.sendMessage(this.obtainMessage(MSG_UPDATE_TIMER));
   }
 
   public void stop() {
-    Log.v("TimerViewHandler: stop()");
+    if (Log.DEBUG) Log.v("TimerViewHandler: stop()");
     this.removeMessages(MSG_UPDATE_TIMER);
     updateView();
   }

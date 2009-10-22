@@ -79,7 +79,7 @@ public class Timer {
 
   public int start(long time, boolean comingFromPaused) {
     if (time > MAX_TIMER) {
-      if (Log.LOGV) Log.v("Timer.start() - timer too big");
+      if (Log.DEBUG) Log.v("Timer.start() - timer too big");
       return TIMER_TOO_BIG;
     } else if (time > 0) {
       timerRunning = true;
@@ -87,19 +87,19 @@ public class Timer {
       triggerTime = remainingTime + System.currentTimeMillis();
       myAM.set(AlarmManager.RTC_WAKEUP, getTriggerTime(), timerAlarmIntent);
       if (comingFromPaused) {
-        if (Log.LOGV) Log.v("Timer.start() - timer started from pause");
+        if (Log.DEBUG) Log.v("Timer.start() - timer started from pause");
         return TIMER_STARTED_OK_FROM_PAUSE;
       } else {
-        if (Log.LOGV) Log.v("Timer.start() - timer started");
+        if (Log.DEBUG) Log.v("Timer.start() - timer started");
         // showNotification(myContext.getString(R.string.timer_running));
         ManageNotification.show(myContext, myContext.getString(R.string.timer_running));
         return TIMER_STARTED_OK;
       }
     } else if (time == 0) {
-      if (Log.LOGV) Log.v("Timer.start() - remainingTime=0");
+      if (Log.DEBUG) Log.v("Timer.start() - remainingTime=0");
       return TIMER_ZERO;
     }
-    if (Log.LOGV) Log.v("Timer.start() - timer stale");
+    if (Log.DEBUG) Log.v("Timer.start() - timer stale");
     return TIMER_STALE;
   }
 

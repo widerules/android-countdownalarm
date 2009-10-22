@@ -198,7 +198,7 @@ public class TimerActivity extends Activity {
 
   @Override
   protected void onPause() {
-    Log.v("TimerActivity: onPause()");
+    if (Log.DEBUG) Log.v("TimerActivity: onPause()");
     super.onPause();
 
     myTimer.save();
@@ -227,7 +227,7 @@ public class TimerActivity extends Activity {
 
   @Override
   protected void onResume() {
-    Log.v("TimerActivity: onResume()");
+    if (Log.DEBUG) Log.v("TimerActivity: onResume()");
     super.onResume();
 
     String hour = myPrefs.getString("prevHourSelected", "0");
@@ -350,14 +350,14 @@ public class TimerActivity extends Activity {
     super.onWindowFocusChanged(hasFocus);
     if (hasFocus) {
       if (!myTimer.isRunning()) {
-        Log.v("TimerActivity: onWindowFocusChanged(true)");
+        if (Log.DEBUG) Log.v("TimerActivity: onWindowFocusChanged(true)");
         ManageNotification.clear(this);
         ManageWakeLock.release();
         // myTimer.clearNotification();
       }
     } else {
       // Reset the UI in case it shows when the alert rings
-      Log.v("TimerActivity: onWindowFocusChanged(false)");
+      if (Log.DEBUG) Log.v("TimerActivity: onWindowFocusChanged(false)");
       // Reset the timer and buttons in case the alarm triggers and the activity
       // ends up in the background
       // Timer emptyTimer = new Timer(this);
@@ -464,7 +464,7 @@ public class TimerActivity extends Activity {
   }
 
   private void updateButtons(Timer myTimer) {
-    Log.v("TimerActivity: updateButtons()");
+    if (Log.DEBUG) Log.v("TimerActivity: updateButtons()");
 
     Button startStopButton = (Button) findViewById(R.id.StartStopButton);
     Button pauseButton = (Button) findViewById(R.id.PauseButton);
@@ -490,7 +490,7 @@ public class TimerActivity extends Activity {
   }
 
   private void updateCountdown(Timer myTimer) {
-    Log.v("TimerActivity: updateCountdown()");
+    if (Log.DEBUG) Log.v("TimerActivity: updateCountdown()");
     myTimer.refreshTimerVals();
     int hours = myTimer.getHoursLeft();
     int mins = myTimer.getMinsLeft();

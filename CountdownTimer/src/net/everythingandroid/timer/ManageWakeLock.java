@@ -31,14 +31,14 @@ public class ManageWakeLock {
     }
 
     myWakeLock = pm.newWakeLock(flags, Log.LOGTAG);
-    Log.v("Wakelock acquired");
+    if (Log.DEBUG) Log.v("Wakelock acquired");
     // myWakeLock.acquire(TIMEOUT_SECS * 1000);
     myWakeLock.acquire();
   }
 
   static void release() {
     if (myWakeLock != null) {
-      Log.v("Wakelock released");
+      if (Log.DEBUG) Log.v("Wakelock released");
       myWakeLock.release();
       myWakeLock = null;
     }

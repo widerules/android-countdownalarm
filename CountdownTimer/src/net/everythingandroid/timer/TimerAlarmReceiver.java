@@ -20,7 +20,7 @@ public class TimerAlarmReceiver extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
-    Log.v("TimerAlarmReceiver: onReceive() start");
+    if (Log.DEBUG) Log.v("TimerAlarmReceiver: onReceive() start");
 
     // Acquire wakelock
     ManageWakeLock.acquire(context);
@@ -81,7 +81,7 @@ public class TimerAlarmReceiver extends BroadcastReceiver {
     notification.setLatestEventInfo(context, context.getText(R.string.timer_complete),
         context.getText(R.string.notification_tip_complete), contentIntent);
 
-    Log.v("*** Notify running ***");
+    if (Log.DEBUG) Log.v("*** Notify running ***");
 
     // Send notification with unique ID
     myNM.notify(ManageNotification.NOTIFICATION_ALERT, notification);
@@ -93,6 +93,6 @@ public class TimerAlarmReceiver extends BroadcastReceiver {
     alarmDialog.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP); // |
     context.startActivity(alarmDialog);
 
-    Log.v("TimerAlarmReceiver: onReceive() end");
+    if (Log.DEBUG) Log.v("TimerAlarmReceiver: onReceive() end");
   }
 }
