@@ -22,7 +22,7 @@
 		<item name="android:textColor">#FFF</item>
 	</style>
 	<style name="ButtonStyle">
-		<item name="android:textSize">30sp</item>
+		<item name="android:textSize">28sp</item>
 		<item name="android:textColor">#FFF</item>
 	</style>
    <style name="AlertStyle">

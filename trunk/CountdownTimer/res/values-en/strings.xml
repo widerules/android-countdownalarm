@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Countdown Alarm</string>
-	<string name="start_button_text">Start Timer</string>
-	<string name="stop_button_text">Cancel Timer</string>
-	<string name="minutes_tag">Minutes</string>
-	<string name="seconds_tag">Seconds</string>
-	<string name="hours_tag">Hours</string>
-	<string name="select_a_time">No time selected</string>
-	<string name="timer_complete">Countdown completed</string>
-	<string name="timer_cancelled">Countdown cancelled</string>
-	<string name="timer_running">Countdown in progress</string>
-	<string name="timer_resumed">Countdown resumed</string>
-	<string name="timer_paused">Countdown paused</string>
-	<string name="notification_tip_complete">Select to set a new timer</string>
-	<string name="notification_tip_running">Select to view countdown timer</string>
-	<string name="please_select_sound">Using default alarm sound, please go to preferences to select a sound</string>
-	<string name="menu_preference">Preferences</string>
-	<string name="menu_about">About</string>
-	<string name="pref_vibrate">vibrate</string>
-	<string name="pref_alarmsound">alarmsound</string>
-	<string name="pref_repeat">repeat</string>
-	<string name="pref_flashled">flashled</string>
-	<string name="pref_flashled_color">flashled_color</string>
-	<string name="pref_show_persistent_notification">show_persistent_notification</string>
-	<string name="pref_snooze">snooze</string>
-	<string name="pref_timeout">timeout</string>
-	<string name="pref_wakescreen">wakescreen</string>
+    <string name="app_name">Countdown Alarm</string>
+    <string name="start_button_text">Start Timer</string>
+    <string name="stop_button_text">Cancel Timer</string>
+    <string name="minutes_tag">Minutes</string>
+    <string name="seconds_tag">Seconds</string>
+    <string name="hours_tag">Hours</string>
+    <string name="select_a_time">No time selected</string>
+    <string name="timer_complete">Countdown completed</string>
+    <string name="timer_cancelled">Countdown cancelled</string>
+    <string name="timer_running">Countdown in progress</string>
+    <string name="timer_resumed">Countdown resumed</string>
+    <string name="timer_paused">Countdown paused</string>
+    <string name="notification_tip_complete">Select to set a new timer</string>
+    <string name="notification_tip_running">Select to view countdown timer</string>
+    <string name="please_select_sound">Using default alarm sound, please go to preferences to select a sound</string>
+    <string name="menu_preference">Preferences</string>
+    <string name="menu_about">About</string>
+    <string name="pref_vibrate">vibrate</string>
+    <string name="pref_alarmsound">alarmsound</string>
+    <string name="pref_repeat">repeat</string>
+    <string name="pref_flashled">flashled</string>
+    <string name="pref_flashled_color">flashled_color</string>
+    <string name="pref_show_persistent_notification">show_persistent_notification</string>
+    <string name="pref_snooze">snooze</string>
+    <string name="pref_timeout">timeout</string>
+    <string name="pref_wakescreen">wakescreen</string>
    <string name="pref_category_alarm">Alarm Preferences</string>
    
    <string name="pref_alarmsound_title">Timer Alarm Sound</string>
@@ -54,9 +54,9 @@
 
    <string name="pref_show_persistent_notification_title">Persistent Status Icon</string>
    <string name="pref_show_persistent_notification_summaryon">Show a persistent status bar icon while timer is running</string>
-   <string name="pref_show_persistent_notification_summaryoff">Do not show a persistent status bar icon while timer is running</string>	
-	<string name="timer_too_long">Timer too long, maximum is 100 hours</string>
-	<string name="pause_button_text">Pause Timer</string>
-	<string name="resume_button_text">Resume Timer</string>
-	<string name="new_dialog_button">Go to App</string>
+   <string name="pref_show_persistent_notification_summaryoff">Do not show a persistent status bar icon while timer is running</string>
+   <string name="timer_too_long">Timer too long, maximum is 100 hours</string>
+   <string name="pause_button_text">Pause Timer</string>
+   <string name="resume_button_text">Resume Timer</string>
+   <string name="new_dialog_button">Go to App</string>
 </resources>
