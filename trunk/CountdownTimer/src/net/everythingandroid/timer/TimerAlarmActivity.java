@@ -14,7 +14,7 @@ public class TimerAlarmActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Log.v("TimerAlarmActivity: onCreate()");
+    if (Log.DEBUG) Log.v("TimerAlarmActivity: onCreate()");
 
     // Hide the title bar
     requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -41,7 +41,7 @@ public class TimerAlarmActivity extends Activity {
   @Override
   protected void onResume() {
     super.onResume();
-    Log.v("TimerAlarmActivity: onResume()");
+    if (Log.DEBUG) Log.v("TimerAlarmActivity: onResume()");
 
     wasVisible = false;
 
@@ -52,7 +52,7 @@ public class TimerAlarmActivity extends Activity {
       Intent timerActivity = new Intent(this, TimerActivity.class);
       // alarmDialog.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
       // Intent.FLAG_ACTIVITY_NO_HISTORY);
-      Log.v("TimerAlarmActivity: Starting TimerActivity.class intent");
+      if (Log.DEBUG) Log.v("TimerAlarmActivity: Starting TimerActivity.class intent");
       startActivity(timerActivity);
     }
 
@@ -61,7 +61,7 @@ public class TimerAlarmActivity extends Activity {
   @Override
   protected void onPause() {
     super.onPause();
-    Log.v("TimerAlarmActivity: onPause()");
+    if (Log.DEBUG) Log.v("TimerAlarmActivity: onPause()");
     if (wasVisible) {
       ClearAllReceiver.removeCancel(this);
       // ManageNotification.clear(this);
@@ -74,7 +74,7 @@ public class TimerAlarmActivity extends Activity {
   @Override
   protected void onStop() {
     super.onStop();
-    Log.v("TimerAlarmActivity: onStop()");
+    if (Log.DEBUG) Log.v("TimerAlarmActivity: onStop()");
   }
 
   @Override
@@ -82,9 +82,9 @@ public class TimerAlarmActivity extends Activity {
     super.onWindowFocusChanged(hasFocus);
     if (hasFocus) {
       wasVisible = true;
-      Log.v("TimerAlarmActivity: onWindowFocusChanged(true)");
+      if (Log.DEBUG) Log.v("TimerAlarmActivity: onWindowFocusChanged(true)");
     } else {
-      Log.v("TimerAlarmActivity: onWindowFocusChanged(false)");
+      if (Log.DEBUG) Log.v("TimerAlarmActivity: onWindowFocusChanged(false)");
     }
   }
 }

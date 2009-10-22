@@ -10,7 +10,7 @@ public class ClearAllReceiver extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
-    Log.v("ClearAllReceiver: onReceive()");
+    if (Log.DEBUG) Log.v("ClearAllReceiver: onReceive()");
     ManageNotification.clearAll(context);
     ManageKeyguard.reenableKeyguard();
     ManageWakeLock.release();
@@ -21,14 +21,14 @@ public class ClearAllReceiver extends BroadcastReceiver {
   }
 
   public static void setCancel(Context context, int timeout) {
-    Log.v("ClearAllReceiver: setCancel() for " + timeout + "mins");
+    if (Log.DEBUG) Log.v("ClearAllReceiver: setCancel() for " + timeout + "mins");
     AlarmManager myAM = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     myAM.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (timeout * 1000 * 60),
         getPendingIntent(context));
   }
 
   public static void removeCancel(Context context) {
-    Log.v("ClearAllReceiver: removeCancel()");
+    if (Log.DEBUG) Log.v("ClearAllReceiver: removeCancel()");
     AlarmManager myAM = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     myAM.cancel(getPendingIntent(context));
   }
