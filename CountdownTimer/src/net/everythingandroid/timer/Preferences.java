@@ -22,10 +22,4 @@ public class Preferences extends PreferenceActivity {
       startActivity(timerActivity);
     }
   }
-
-  @Override
-  public void onPause() {
-    super.onPause();
-    // finish();
-  }
 }

@@ -32,9 +32,8 @@ public class TimerAlarmReceiver extends BroadcastReceiver {
       (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
     SharedPreferences myPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-
-    boolean vibrate = myPrefs.getBoolean(context.getString(R.string.pref_vibrate), false);
-    boolean flashLed = myPrefs.getBoolean(context.getString(R.string.pref_flashled), false);
+    boolean vibrate = myPrefs.getBoolean(context.getString(R.string.pref_vibrate), true);
+    boolean flashLed = myPrefs.getBoolean(context.getString(R.string.pref_flashled), true);
     String flashLedCol =
       myPrefs.getString(context.getString(R.string.pref_flashled_color), "yellow");
     int timeout =

@@ -49,8 +49,8 @@ public class ManageNotification {
         PendingIntent.getActivity(context, 0, new Intent(context, TimerActivity.class), 0);
 
       // Set the messages that show when the status bar is pulled down
-      notification.setLatestEventInfo(context, statusMessage, context
-          .getText(R.string.notification_tip_running), contentIntent);
+      notification.setLatestEventInfo(context, statusMessage,
+          context.getText(R.string.notification_tip_running), contentIntent);
 
       // Send notification with unique ID
       myNM.notify(NOTIFICATION_RUNNING, notification);

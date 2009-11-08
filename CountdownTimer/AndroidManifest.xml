@@ -10,6 +10,7 @@
     <activity
       android:name=".TimerActivity"
       android:label="@string/app_name"
+      android:configChanges="orientation|keyboardHidden"
       android:launchMode="singleTask">
       <intent-filter>
         <action
@@ -23,6 +24,7 @@
     <activity
       android:name=".TimerAlarmActivity"
       android:theme="@android:style/Theme.Dialog"
+      android:configChanges="orientation|keyboardHidden"
       android:launchMode="singleInstance"></activity>
     <receiver
       android:name=".TimerAlarmReceiver"></receiver>
