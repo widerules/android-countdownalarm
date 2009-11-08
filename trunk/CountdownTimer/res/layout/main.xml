@@ -70,8 +70,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:layout_weight="1">
         <TextView
           android:id="@+id/HourTextView"
           android:layout_height="wrap_content"
@@ -82,19 +82,19 @@
         <Spinner
           android:id="@+id/HourSpinner"
           android:layout_width="fill_parent"
-          android:layout_height="wrap_content" />
+          android:layout_height="wrap_content"
+          android:visibility="gone" />
         <EditText
           android:layout_height="wrap_content"
           android:id="@+id/HourEditText"
           android:layout_width="fill_parent"
-          android:visibility="gone"
-          android:numeric="integer"
           android:selectAllOnFocus="true"
+          android:singleLine="true"
+          android:numeric="integer"          
           android:text="0"
           android:maxLength="3"
-          android:singleLine="true"
-          android:inputType="phone"
-          android:digits="0123456789" />
+          android:digits="0123456789"
+          android:inputType="phone" />
       </LinearLayout>
       <LinearLayout
         android:id="@+id/MinuteSelectLayout"
@@ -113,12 +113,12 @@
         <Spinner
           android:id="@+id/MinuteSpinner"
           android:layout_height="wrap_content"
-          android:layout_width="fill_parent" />
+          android:layout_width="fill_parent"
+          android:visibility="gone" />
         <EditText
           android:layout_height="wrap_content"
           android:id="@+id/MinuteEditText"
           android:layout_width="fill_parent"
-          android:visibility="gone"
           android:singleLine="true"
           android:numeric="integer"
           android:selectAllOnFocus="true"
@@ -132,8 +132,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:layout_weight="1">
         <TextView
           android:id="@+id/SecondTextView"
           android:layout_height="wrap_content"
@@ -144,12 +144,12 @@
         <Spinner
           android:layout_height="wrap_content"
           android:id="@+id/SecondSpinner"
-          android:layout_width="fill_parent" />
+          android:layout_width="fill_parent"
+          android:visibility="gone" />
         <EditText
           android:layout_height="wrap_content"
           android:id="@+id/SecondEditText"
           android:layout_width="fill_parent"
-          android:visibility="gone"
           android:numeric="integer"
           android:singleLine="true"
           android:selectAllOnFocus="true"

@@ -44,6 +44,10 @@ public class TimerActivity extends Activity {
   private ArrayList<String> secSpinnerList, minSpinnerList, hourSpinnerList;
   private int keyboard_hidden;
   private TimerViewHandler tvHandler;
+  private LinearLayout buttonLinearLayout;
+
+  private static int TIMER_INPUT_TYPE_EDITTEXT = 0;
+  private static int TIMER_INPUT_TYPE_SPINNER = 1;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +66,6 @@ public class TimerActivity extends Activity {
             Toast.makeText(myContext, R.string.select_a_time, Toast.LENGTH_SHORT).show();
             break;
           case Timer.TIMER_STARTED_OK:
-            // startHandler();
             tvHandler.start();
             break;
           case Timer.TIMER_STARTED_OK_FROM_PAUSE:
@@ -132,19 +135,11 @@ public class TimerActivity extends Activity {
     minEditText = (EditText) findViewById(R.id.MinuteEditText);
     secEditText = (EditText) findViewById(R.id.SecondEditText);
 
-    // hourEditText.setOnKeyListener(new OnKeyListener() {
-    // public boolean onKey(View v, int keyCode, KeyEvent event) {
-    // if (keyCode == KeyEvent.KEYCODE_ENTER) {
-    // minEditText.requestFocus();
-    // }
-    // return false;
-    // }
-    // }
-    // );
+    buttonLinearLayout = (LinearLayout) findViewById(R.id.ButtonLayout);
 
     hourSpinnerList =
-      new ArrayList<String>(Arrays
-          .asList(getResources().getStringArray(R.array.hours_array_full)));
+      new ArrayList<String>(
+          Arrays.asList(getResources().getStringArray(R.array.hours_array_full)));
     minSpinnerList =
       new ArrayList<String>(Arrays.asList(getResources().getStringArray(
           R.array.mins_secs_array_full)));
@@ -169,31 +164,15 @@ public class TimerActivity extends Activity {
 
     myPrefs = PreferenceManager.getDefaultSharedPreferences(TimerActivity.this);
 
-    if (savedInstanceState == null) { // Only when it's created for the first
-      // time
-      // Check if the user has set a custom sound for the timer, if not show a
-      // message
+    if (savedInstanceState == null) {
+      // Only when it's created for the first time
+      // Check if the user has set a custom sound for the timer, if not show a message
       if (myPrefs.getString(getString(R.string.pref_alarmsound), null) == null) {
         Toast.makeText(this, R.string.please_select_sound, Toast.LENGTH_LONG).show();
       }
     }
 
-    keyboard_hidden = getResources().getConfiguration().keyboardHidden;
-
-    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-      LinearLayout LL = (LinearLayout) findViewById(R.id.ButtonLayout);
-      LL.setOrientation(LinearLayout.HORIZONTAL);
-    }
-
-    if (keyboard_hidden == Configuration.KEYBOARDHIDDEN_NO) {
-      hourEditText.setVisibility(EditText.VISIBLE);
-      minEditText.setVisibility(EditText.VISIBLE);
-      secEditText.setVisibility(EditText.VISIBLE);
-
-      hourSpinner.setVisibility(View.GONE);
-      minSpinner.setVisibility(View.GONE);
-      secSpinner.setVisibility(View.GONE);
-    }
+    updateLayout(getResources().getConfiguration());
   }
 
   @Override
@@ -275,24 +254,17 @@ public class TimerActivity extends Activity {
 
     updateButtons();
     updateCountdown();
+  }
 
-    // if (getIntent().getBooleanExtra("net.everythingandroid.ALARM_RINGING",
-    // false)) {
-    // // if (getIntent().getExtras() != null) {
-    // // Log.v("found extras");
-    // // if
-    // (getIntent().getExtras().getBoolean("net.everythingandroid.ALARM_RINGING"))
-    // {
-    // Log.v("show dialog after timer complete");
-    // showDialog(DIALOG_TIMER_COMPLETE);
-    // // }
-    // }
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    updateLayout(newConfig);
   }
 
   private OnClickListener StartStopTimer = new OnClickListener() {
     public void onClick(View v) {
       int hourSelected = 0, minSelected = 0, secSelected = 0;
-      // myNM.cancelAll();
 
       // Keyboard is available, use edittext boxes
       if (keyboard_hidden == Configuration.KEYBOARDHIDDEN_NO) {
@@ -334,12 +306,10 @@ public class TimerActivity extends Activity {
     switch (item.getItemId()) {
       case PREFERENCES_ID:
         Intent prefIntent = new Intent(this, Preferences.class);
-        // prefIntent.setFlags();
         startActivity(prefIntent);
         return true;
       case ABOUT_ID:
         showDialog(DIALOG_ABOUT);
-        // showDialog(DIALOG_TIMER_COMPLETE);
         return true;
     }
     return super.onMenuItemSelected(featureId, item);
@@ -365,14 +335,6 @@ public class TimerActivity extends Activity {
       // updateCountdown(emptyTimer);
     }
   }
-
-  // @Override
-  // public void onNewIntent(Intent intent) {
-  // if (intent.getBooleanExtra("net.everythingandroid.ALARM_RINGING", false)) {
-  // Log.v("onNewIntent(): show dialog after timer complete");
-  // showDialog(DIALOG_TIMER_COMPLETE);
-  // }
-  // }
 
   @Override
   protected Dialog onCreateDialog(int id) {
@@ -516,4 +478,50 @@ public class TimerActivity extends Activity {
     }
   }
 
+  /**
+   * Refresh the layout depending on the given configuration
+   * 
+   * @param configuration
+   */
+  private void updateLayout(Configuration configuration) {
+    keyboard_hidden = configuration.keyboardHidden;
+
+    if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+      buttonLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
+    } else {
+      buttonLinearLayout.setOrientation(LinearLayout.VERTICAL);
+    }
+
+    if (keyboard_hidden == Configuration.KEYBOARDHIDDEN_NO) {
+      switchTimerInputMethod(TIMER_INPUT_TYPE_EDITTEXT);
+    } else {
+      switchTimerInputMethod(TIMER_INPUT_TYPE_SPINNER);
+    }
+  }
+
+  /**
+   * Switch the method for inputting the time (choice of EditText entry using keyboard or
+   * Spinners using touch screen).
+   * 
+   * @param method   TIMER_INPUT_TYPE_EDITTEXT or TIMER_INPUT_TYPE_SPINNER
+   */
+  private void switchTimerInputMethod(int method) {
+    if (method == TIMER_INPUT_TYPE_EDITTEXT) {
+      hourEditText.setVisibility(EditText.VISIBLE);
+      minEditText.setVisibility(EditText.VISIBLE);
+      secEditText.setVisibility(EditText.VISIBLE);
+
+      hourSpinner.setVisibility(View.GONE);
+      minSpinner.setVisibility(View.GONE);
+      secSpinner.setVisibility(View.GONE);
+    } else if (method == TIMER_INPUT_TYPE_SPINNER) {
+      hourEditText.setVisibility(EditText.GONE);
+      minEditText.setVisibility(EditText.GONE);
+      secEditText.setVisibility(EditText.GONE);
+
+      hourSpinner.setVisibility(View.VISIBLE);
+      minSpinner.setVisibility(View.VISIBLE);
+      secSpinner.setVisibility(View.VISIBLE);
+    }
+  }
 }

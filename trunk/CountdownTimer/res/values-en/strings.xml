@@ -17,15 +17,6 @@
     <string name="please_select_sound">Using default alarm sound, please go to preferences to select a sound</string>
     <string name="menu_preference">Preferences</string>
     <string name="menu_about">About</string>
-    <string name="pref_vibrate">vibrate</string>
-    <string name="pref_alarmsound">alarmsound</string>
-    <string name="pref_repeat">repeat</string>
-    <string name="pref_flashled">flashled</string>
-    <string name="pref_flashled_color">flashled_color</string>
-    <string name="pref_show_persistent_notification">show_persistent_notification</string>
-    <string name="pref_snooze">snooze</string>
-    <string name="pref_timeout">timeout</string>
-    <string name="pref_wakescreen">wakescreen</string>
    <string name="pref_category_alarm">Alarm Preferences</string>
    
    <string name="pref_alarmsound_title">Timer Alarm Sound</string>
@@ -59,4 +50,12 @@
    <string name="pause_button_text">Pause Timer</string>
    <string name="resume_button_text">Resume Timer</string>
    <string name="new_dialog_button">Go to App</string>
+   
+   <string-array name="pref_led_color_values">
+     <item>Blue</item>
+     <item>Green</item>
+     <item>Red</item>
+     <item>Yellow</item>
+     <item>Magenta</item>
+   </string-array>   
 </resources>

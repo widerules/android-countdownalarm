@@ -13,13 +13,13 @@
       android:title="@string/pref_vibrate_title"
       android:summaryOn="@string/pref_vibrate_summaryon"
       android:summaryOff="@string/pref_vibrate_summaryoff"
-      android:defaultValue="false" />
+      android:defaultValue="true" />
     <CheckBoxPreference
       android:key="@string/pref_flashled"
       android:title="@string/pref_flashled_title"
       android:summaryOn="@string/pref_flashled_summaryon"
       android:summaryOff="@string/pref_flashled_summaryoff"
-      android:defaultValue="false" />
+      android:defaultValue="true" />
     <ListPreference
       android:key="@string/pref_flashled_color"
       android:title="@string/pref_flashled_color_title"
@@ -49,6 +49,6 @@
       android:title="@string/pref_show_persistent_notification_title"
       android:summaryOn="@string/pref_show_persistent_notification_summaryon"
       android:summaryOff="@string/pref_show_persistent_notification_summaryoff"
-      android:defaultValue="false" />
+      android:defaultValue="true" />
   </PreferenceCategory>
 </PreferenceScreen>
