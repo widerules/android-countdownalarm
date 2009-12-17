@@ -59,4 +59,6 @@
   <string name="pause_button_text">Pause Timer</string>
   <string name="resume_button_text">Resume Timer</string>
   <string name="new_dialog_button">Go to App</string>
+  
+  <string name="pref_about_text">Created by: Adam K\nEmail: adam@everythingandroid.net\nBlog: http://www.everythingandroid.net\n\nA simple countdown timer alarm application.  Feel free to email me any comments, suggestions or bugs.\n\nCredits to Min Tran for the app icon.\n(http://min.frexy.com)</string>
 </resources>

@@ -14,9 +14,10 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 
 public class TimerAlarmReceiver extends BroadcastReceiver {
+
   // 200ms off, 200ms on
   private static final long[] vibrate_pattern = {200, 200};
-  private static final String alarm_timeout = "5";
+  private static final String DEFAULT_ALARM_TIMEOUT = "5";
 
   @Override
   public void onReceive(Context context, Intent intent) {
@@ -37,7 +38,8 @@ public class TimerAlarmReceiver extends BroadcastReceiver {
     String flashLedCol =
       myPrefs.getString(context.getString(R.string.pref_flashled_color), "yellow");
     int timeout =
-      Integer.valueOf(myPrefs.getString(context.getString(R.string.pref_timeout), alarm_timeout));
+      Integer.valueOf(
+          myPrefs.getString(context.getString(R.string.pref_timeout), DEFAULT_ALARM_TIMEOUT));
 
     String defaultRingtone = Settings.System.DEFAULT_RINGTONE_URI.toString();
     Uri alarmSoundURI =

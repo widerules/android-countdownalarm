@@ -22,6 +22,7 @@ public class TimerAlarmActivity extends Activity {
     Button okbutton = (Button) findViewById(R.id.okbutton);
     okbutton.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
+        ManageNotification.clearAll(TimerAlarmActivity.this);
         finish();
       }
     });
@@ -64,8 +65,6 @@ public class TimerAlarmActivity extends Activity {
     if (Log.DEBUG) Log.v("TimerAlarmActivity: onPause()");
     if (wasVisible) {
       ClearAllReceiver.removeCancel(this);
-      // ManageNotification.clear(this);
-      ManageNotification.clearAll(this);
       ManageKeyguard.reenableKeyguard();
       ManageWakeLock.release();
     }

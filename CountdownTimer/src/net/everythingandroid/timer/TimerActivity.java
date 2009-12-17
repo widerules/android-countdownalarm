@@ -12,10 +12,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.util.Linkify;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,8 +31,6 @@ public class TimerActivity extends Activity {
   private static final int PREFERENCES_ID = Menu.FIRST;
   private static final int ABOUT_ID = Menu.FIRST + 1;
   private static final int DIALOG_ABOUT = 0;
-  private static final int DIALOG_TIMER_COMPLETE = 1;
-  // private static final int MSG_UPDATE_TIMER = 1;
 
   private Timer myTimer;
   private SharedPreferences myPrefs;
@@ -48,6 +45,8 @@ public class TimerActivity extends Activity {
 
   private static int TIMER_INPUT_TYPE_EDITTEXT = 0;
   private static int TIMER_INPUT_TYPE_SPINNER = 1;
+
+  private static final String DEFAULT_MINUTES = "5";
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -181,7 +180,6 @@ public class TimerActivity extends Activity {
     super.onPause();
 
     myTimer.save();
-    // stopHandler();
     tvHandler.stop();
 
     SharedPreferences.Editor settings = myPrefs.edit();
@@ -209,17 +207,21 @@ public class TimerActivity extends Activity {
     if (Log.DEBUG) Log.v("TimerActivity: onResume()");
     super.onResume();
 
+    // Fetch previous timer selections
     String hour = myPrefs.getString("prevHourSelected", "0");
-    String min = myPrefs.getString("prevMinSelected", "0");
+    String min = myPrefs.getString("prevMinSelected", DEFAULT_MINUTES);
     String sec = myPrefs.getString("prevSecSelected", "0");
 
-    if (hourSpinnerList.size() == getResources().getStringArray(R.array.hours_array_full).length + 1) {
+    if (hourSpinnerList.size() ==
+      getResources().getStringArray(R.array.hours_array_full).length + 1) {
       hourSpinnerList.remove(0);
     }
-    if (minSpinnerList.size() == getResources().getStringArray(R.array.mins_secs_array_full).length + 1) {
+    if (minSpinnerList.size() ==
+      getResources().getStringArray(R.array.mins_secs_array_full).length + 1) {
       minSpinnerList.remove(0);
     }
-    if (secSpinnerList.size() == getResources().getStringArray(R.array.mins_secs_array_full).length + 1) {
+    if (secSpinnerList.size() ==
+      getResources().getStringArray(R.array.mins_secs_array_full).length + 1) {
       secSpinnerList.remove(0);
     }
 
@@ -340,18 +342,6 @@ public class TimerActivity extends Activity {
   protected Dialog onCreateDialog(int id) {
     switch (id) {
       case DIALOG_ABOUT:
-        // Create a view to display in the about dialog
-        TextView myTV = new TextView(TimerActivity.this);
-        myTV.setText("Created by: Adam K\n" + "Email: adam@everythingandroid.net\n"
-            + "Blog: http://www.everythingandroid.net\n\n"
-            + "A simple countdown timer alarm application.  "
-            + "Feel free to email me any comments, suggestions or bugs.\n\n"
-            + "Credits to Min Tran for the app icon.\n" + "(http://min.frexy.com)");
-        myTV.setPadding(15, 15, 15, 15);
-        myTV.setTextColor(Color.WHITE);
-        myTV.setTextSize(14);
-        // Linkify!
-        Linkify.addLinks(myTV, Linkify.ALL);
 
         // Try and find app version number
         String version = new String("");
@@ -365,58 +355,20 @@ public class TimerActivity extends Activity {
           // e.printStackTrace();
         }
 
-        return new AlertDialog.Builder(TimerActivity.this).setIcon(R.drawable.alarm_icon).setTitle(
-            getString(R.string.app_name) + version).setView(myTV).setPositiveButton(
-                android.R.string.ok, new DialogInterface.OnClickListener() {
-                  public void onClick(DialogInterface dialog, int whichButton) {
-                    /* User clicked OK so do some stuff */
-                  }
-                })
-                /*
-                 * .setNeutralButton("Middle Button", new
-                 * DialogInterface.OnClickListener() { public void
-                 * onClick(DialogInterface dialog, int whichButton) { //User clicked
-                 * Something so do some stuff } }) .setNegativeButton("Cancel", new
-                 * DialogInterface.OnClickListener() { public void
-                 * onClick(DialogInterface dialog, int whichButton) { //User clicked
-                 * Cancel so do some stuff } })
-                 */
-                .create();
-      case DIALOG_TIMER_COMPLETE:
-        // Dialog to show when the timer is complete
-        return new AlertDialog.Builder(TimerActivity.this).setTitle(R.string.timer_complete)
-        .setIcon(android.R.drawable.ic_dialog_info)
-        // .setMessage(R.string.timer_complete)
-        // .setCancelable(false)
-        .setOnCancelListener(new DialogInterface.OnCancelListener() {
-          public void onCancel(DialogInterface dialog) {
-            // myNM.cancelAll();
-            // myTimer.stop();
-            ManageNotification.clear(TimerActivity.this);
-            ManageKeyguard.reenableKeyguard();
-          }
-        }).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int whichButton) {
-            // myNM.cancelAll();
-            // myTimer.stop();
-            // myTimer.clearNotification();
-            ManageNotification.clear(TimerActivity.this);
-            ManageKeyguard.reenableKeyguard();
-          }
-        })
-        // .setNeutralButton("Snooze", new DialogInterface.OnClickListener()
-        // {
-        // public void onClick(DialogInterface dialog, int whichButton) {
-        // myNM.cancelAll();
-        // }
-        // })
-        // .setNegativeButton("Restart", new
-        // DialogInterface.OnClickListener() {
-        // public void onClick(DialogInterface dialog, int whichButton) {
-        // myNM.cancelAll();
-        // }
-        // })
-        .create();
+        LayoutInflater factory = getLayoutInflater();
+        final View aboutView = factory.inflate(R.layout.about, null);
+
+        return new AlertDialog.Builder(TimerActivity.this)
+        .setIcon(R.drawable.alarm_icon)
+        .setTitle(getString(R.string.app_name) + version)
+        .setView(aboutView)
+        .setPositiveButton(
+            android.R.string.ok, new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int whichButton) {
+                /* User clicked OK so do some stuff */
+              }
+            })
+            .create();
     }
     return null;
   }
