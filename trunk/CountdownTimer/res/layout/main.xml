@@ -122,10 +122,9 @@
           android:singleLine="true"
           android:numeric="integer"
           android:selectAllOnFocus="true"
-          android:text="0"
           android:maxLength="4"
           android:digits="0123456789"
-          android:inputType="phone" />
+          android:inputType="phone" android:text="0"/>
       </LinearLayout>
       <LinearLayout
         android:id="@+id/SecondSelectLayout"

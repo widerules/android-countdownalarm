@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Countdown Alarm</string>
-    <string name="start_button_text">Start Timer</string>
-    <string name="stop_button_text">Cancel Timer</string>
-    <string name="minutes_tag">Minutes</string>
-    <string name="seconds_tag">Seconds</string>
-    <string name="hours_tag">Hours</string>
-    <string name="select_a_time">No time selected</string>
-    <string name="timer_complete">Countdown completed</string>
-    <string name="timer_cancelled">Countdown cancelled</string>
-    <string name="timer_running">Countdown in progress</string>
-    <string name="timer_resumed">Countdown resumed</string>
-    <string name="timer_paused">Countdown paused</string>
-    <string name="notification_tip_complete">Select to set a new timer</string>
-    <string name="notification_tip_running">Select to view countdown timer</string>
-    <string name="please_select_sound">Using default alarm sound, please go to preferences to select a sound</string>
-    <string name="menu_preference">Preferences</string>
-    <string name="menu_about">About</string>
+   <string name="app_name">Countdown Alarm</string>
+   <string name="start_button_text">Start Timer</string>
+   <string name="stop_button_text">Cancel Timer</string>
+   <string name="minutes_tag">Minutes</string>
+   <string name="seconds_tag">Seconds</string>
+   <string name="hours_tag">Hours</string>
+   <string name="select_a_time">No time selected</string>
+   <string name="timer_complete">Countdown completed</string>
+   <string name="timer_cancelled">Countdown cancelled</string>
+   <string name="timer_running">Countdown in progress</string>
+   <string name="timer_resumed">Countdown resumed</string>
+   <string name="timer_paused">Countdown paused</string>
+   <string name="notification_tip_complete">Select to set a new timer</string>
+   <string name="notification_tip_running">Select to view countdown timer</string>
+   <string name="please_select_sound">Using default alarm sound, please go to preferences to select a sound</string>
+   <string name="menu_preference">Preferences</string>
+   <string name="menu_about">About</string>
    <string name="pref_category_alarm">Alarm Preferences</string>
    
    <string name="pref_alarmsound_title">Timer Alarm Sound</string>
@@ -57,5 +57,7 @@
      <item>Red</item>
      <item>Yellow</item>
      <item>Magenta</item>
-   </string-array>   
+   </string-array>
+   
+   <string name="pref_about_text">Created by: Adam K\nEmail: adam@everythingandroid.net\nBlog: http://www.everythingandroid.net\n\nA simple countdown timer alarm application.  Feel free to email me any comments, suggestions or bugs.\n\nCredits to Min Tran for the app icon.\n(http://min.frexy.com)</string>   
 </resources>
